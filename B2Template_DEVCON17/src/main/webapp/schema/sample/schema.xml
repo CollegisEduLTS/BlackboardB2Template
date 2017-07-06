@@ -1,0 +1,20 @@
+<schema xmlns="http://www.blackboard.com/bb-schema" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.blackboard.com/bb-schema http://fibbba.medu.com/xsd/bb-schema.xsd"
+	comment="clgs_sample" name="clgs_sample">
+ 	<table name="clgs_sample">
+        <comment>This is the table for the schedule.</comment>
+        <column name="pk1" data-type="int" nullable="false" identity="true" comment="This is the primary key for the table."/>
+        <column name="object_id" data-type="nvarchar(100)" nullable="false" comment="This is the unique schedule id that the user creates."/>
+         <column name="email_addresses" data-type="nvarchar(1000)" nullable="true" comment="These are the email addresses where the notifications should be sent to."/>
+        <column name="scheduled_ind" data-type="char(1)" nullable="true" default="'Y'" comment="This is the boolean flag (Y/N) that indicates whether this schedule is turned on."/>      
+        <column name="dtcreated" data-type="datetime" nullable="false" default="NOW" comment="This is the date time when the schedule was created."/>
+        <column name="dtmodified" data-type="datetime" nullable="false" default="NOW" comment="This is the date time when the schedule was last modified."/>
+        <primary-key name="clgs_sample_pk1">
+            <columnref name="pk1"/>
+        </primary-key>
+        <index name="clgs_sample_idx1" unique="true">
+      		<columnref name="object_id" />
+    	</index>
+    </table>
+</schema>

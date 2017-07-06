@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest xmlns="http://www.blackboard.com/bb-manifest-plugin"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.blackboard.com/bb-manifest-plugin http://fibbba.medu.com/xsd/bb-manifest-plugin.xsd">
+	<plugin>
+		<name value="${project.name}" />
+		<handle value="${project.artifactId}" />
+		<description value="${project.description}" />
+		<default-locale value="en_US" />
+		<webapp-type value="javaext" />
+		<version
+			value="${parsedVersion.majorVersion}.${parsedVersion.minorVersion}.${parsedVersion.incrementalVersion}.${parsedVersion.qualifier}" />
+		<requires>
+			<bbversion value="9.1" />
+		</requires>
+		<vendor>
+			<id value="${vendorid}" />
+			<name value="${vendorname}" />
+			<url value="${vendorurl}" />
+			<description value="${vendordescription}" />
+		</vendor>
+
+		<http-actions>
+			<config value="app/admin/admin_settings" />
+		</http-actions>
+
+		<schema-dirs>
+
+		</schema-dirs>
+
+
+		<!-- Modules, types, and channels for the portal -->
+		<module-defs>
+			<module-type ext-ref="${project.artifactId}_module"
+				title="${b2.module.type.title}" uicreatable="true">
+				<jsp-dir>app/</jsp-dir>
+				<jsp>
+					<view>module</view>
+					<edit>admin/module_settings</edit>
+				</jsp>
+			</module-type>
+			<module type="${project.artifactId}_module" title="${b2.module.title}"
+				useraddable="true" isdetachable="true" isdeletable="false"
+				isavailabletocourse="true" isavailabletoorganization="true" isasync="true">
+				<description>${b2.module.description}
+				</description>
+				<ExtraInfo />
+				<module-groups>
+					<module-group id="Everyone" />
+				</module-groups>
+
+			</module>
+		</module-defs>
+
+		<!-- Definitions for adding links to the B2 -->
+		<application-defs>
+			<application handle="${project.artifactId}_application"
+				name="${b2.application.title}" type="shared">
+				<links>
+					<link>
+						<type value="system_tool" />
+						<name value="${b2.systemtool.title}" />
+						<url value="app/system_tool" />
+						<description value="${b2.systemtool.description}" />
+					</link>
+					<link>
+						<type value="course_tool" />
+						<name value="${b2.coursetool.title}" />
+						<url value="app/course_tool" />
+						<description value="${b2.coursetool.description}" />
+					</link>
+					<link>
+						<type value="tool" />
+						<name value="${b2.tool.title}" />
+						<url value="app/tool" />
+						<description value="${b2.tool.description}" />
+					</link>
+				</links>
+			</application>
+		</application-defs>
+
+		<!-- Extensions can be defined to tap into core application hooks. -->
+		<extension-defs>
+
+		</extension-defs>
+
+
+		<!-- The "template" attribute for an entitlement acts as a source from 
+			which to copy permissions. In the sample below, The admin privilige will 
+			be set up just as the system.admin.VIEW at the time it's created. <entitlements> 
+			</entitlements> -->
+
+		<permissions>
+			<permission type="java.io.FilePermission" name="BB_HOME/logs/-"
+				actions="read,write,delete" />
+			<permission type="java.io.FilePermission" name="BB_HOME/apps/tomcat/temp/-"
+				actions="read,write,delete" />
+			<permission type="runtime" name="accessClassInPackage.*" />
+			<permission type="runtime" name="accessDeclaredMembers" />
+			<permission type="runtime" name="db.connection.*" />
+			<permission type="runtime" name="getClassLoader" />
+			<permission type="runtime" name="createClassLoader" />
+			<permission type="runtime" name="getProtectionDomain" />
+			<permission type="java.lang.reflect.ReflectPermission"
+				name="suppressAccessChecks" />
+
+		</permissions>
+		<requires-bean-introspection value="true" />
+	</plugin>
+</manifest>
