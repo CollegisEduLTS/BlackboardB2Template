@@ -18,9 +18,6 @@ public class LinkController {
 	@RequestMapping(value = { "course_tool" }, method = RequestMethod.GET)
 	public String getCourseTool(HttpServletRequest request,
 			HttpServletResponse response, ModelMap model) {
-		
-		//SettingsManager sm = new SettingsManager(request);
-		//model.addAllAttributes(sm.getSettings());
 		return "course_tool";
 
 	}
